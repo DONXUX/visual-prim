@@ -1,1 +1,1 @@
-visual_prim
+Visual Prim Algorithm
