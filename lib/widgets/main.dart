@@ -1,8 +1,9 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:visual_prim_algorithm/Graph.dart';
-import 'package:visual_prim_algorithm/Matrix.dart';
-import 'package:visual_prim_algorithm/Array.dart';
+import 'package:visual_prim_algorithm/data/PrimData.dart';
+import 'package:visual_prim_algorithm/widgets/Graph.dart';
+import 'package:visual_prim_algorithm/widgets/Matrix.dart';
+import 'package:visual_prim_algorithm/widgets/Array.dart';
 
 void main() => runApp(MyApp());
 
@@ -29,10 +30,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  static Prim prim = new Prim();
   int _selectedPage = 0;
   final _pageOptions = [
-    GraphPageState(),
-    MatrixPageState(),
+    GraphPage(prim: prim),
+    MatrixPageState(prim: prim),
     ArrayPageState()
   ];
 
@@ -55,11 +57,11 @@ class _MyHomePageState extends State<MyHomePage> {
             title: Text('그래프'),
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.star),
+            icon: const Icon(Icons.grid_on),
             title: Text('인접행렬'),
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.star),
+            icon: const Icon(Icons.view_list),
             title: Text('배열'),
           ),
         ],
