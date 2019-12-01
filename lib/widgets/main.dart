@@ -35,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final _pageOptions = [
     GraphPage(prim: prim),
     MatrixPageState(prim: prim),
-    ArrayPageState()
+    ArrayPageState(prim: prim)
   ];
 
   @override
@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: const Icon(Icons.star),
+            icon: const Icon(Icons.device_hub),
             title: Text('그래프'),
           ),
           BottomNavigationBarItem(

@@ -5,22 +5,29 @@ import 'package:collection/collection.dart';
 import 'package:flutter/scheduler.dart';
 
 class Geometric {
+  List<int> n;
   List<Point> ps;
   List<Line> ls;
+  int cnt;
   int _listMaxSize;
 
   Geometric(int size){
+    n = new List();
     ps = new List();
     ls = new List();
+    cnt = 0;
     _listMaxSize = size;
   }
 
   void init(){
+    n.clear();
     ps.clear();
+    cnt = 0;
   }
 
   void addPoint(Point p){
     if(ps.length < _listMaxSize){
+      n.add(cnt++);
       ps.add(p);
     }
   }
@@ -33,7 +40,7 @@ class Geometric {
 class Prim {
   List<List<int>> matrix;
   List<Line> edge_list;
-  final int INF = 9999999;
+  List<List<int>> tree;
 
   void setMatrix(List<List<int>> matrix){
     this.matrix = matrix;
@@ -69,11 +76,19 @@ class Prim {
         }
       }
     }
-    edge_list = ls;
 
-    print("알고리즘 후 : " + ls.length.toString());
+    edge_list = ls;
+    tree = new List<List<int>>.generate(
+        2, (i) => List<int>.generate(edge_list.length, (j) => 0));
+    for(int i = 0; i < edge_list.length; i++) {
+      tree[0][i] = edge_list[i].getIdxP1;
+      tree[1][i] = edge_list[i].getIdxP2;
+    }
+    print("트리 배열0 : " + tree[0].toString());
+    print("트리 배열1 : " + tree[1].toString());
+
     for(int i=0;i<ls.length; i++){
-      print("알고리즘 후2 : ( " + ls[i].getIdxP1.toString() + ", " + ls[i].getIdxP2.toString() + ", " +
+      print("알고리즘 후 : ( " + ls[i].getIdxP1.toString() + ", " + ls[i].getIdxP2.toString() + ", " +
       ls[i].getWeight.toString() + ")");
     }
   }

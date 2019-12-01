@@ -74,6 +74,13 @@ class _GraphPageState extends State<GraphPage> {
 
                   Stack(
                     fit: StackFit.expand,
+                    children: geometric.n
+                        .map(_NodeNum)
+                        .toList(),
+                  ),
+
+                  Stack(
+                    fit: StackFit.expand,
                     children: geometric.ls
                         .map(_Weight)
                         .toList(),
@@ -289,9 +296,25 @@ class _GraphPageState extends State<GraphPage> {
       top: point.y - 12,
       child: Icon(
                 Icons.lens,
-                size: 24.0,
+                color: Colors.indigo,
+                size: 30.0,
               ),
   );
+
+  // 노드 번호 출력 위젯
+  Widget _NodeNum(final int n)  => Positioned(
+    left: geometric.ps[n].x - 4,
+    top: geometric.ps[n].y - 7,
+    child: Text(
+      n.toString(),
+      style: TextStyle(
+        fontSize: 18.0,
+        fontWeight: FontWeight.w900,
+        color: Colors.white,
+      ),
+    ),
+  );
+
 
   // 가중치 텍스트 출력 위젯
   Widget _Weight(final Line line)  => Positioned(
@@ -301,7 +324,7 @@ class _GraphPageState extends State<GraphPage> {
         line.getWeight.toString(),
         style: TextStyle(
           fontSize: 16.0,
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w800,
           color: Colors.red,
         ),
       )
@@ -324,7 +347,7 @@ class PathPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()
-      ..color = Colors.black
+      ..color = Colors.indigo
       ..style = PaintingStyle.stroke
       ..strokeWidth = 4.0;
 
